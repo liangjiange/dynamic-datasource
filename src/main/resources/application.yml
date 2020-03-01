@@ -1,0 +1,79 @@
+server:
+  port: 9000
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,application/javascript,text/html,text/css,text/xml,text/plain
+
+spring:
+  messages: i18n/messages
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    dynamic:
+      druid:
+        filters: stat
+      #      druid: #\u4EE5\u4E0B\u662F\u5168\u5C40\u9ED8\u8BA4\u503C\uFF0C\u53EF\u4EE5\u5168\u5C40\u66F4\u6539
+      #        initial-size:
+      #        max-active:
+      #        min-idle:
+      #        max-wait:
+      #        time-between-eviction-runs-millis:
+      #        time-between-log-stats-millis:
+      #        stat-sqlmax-size:
+      #        min-evictable-idle-time-millis:
+      #        max-evictable-idle-time-millis:
+      #        test-while-idle:
+      #        test-on-borrow:
+      #        test-on-return:
+      #        validation-query:
+      #        validation-query-timeout:
+      #        use-global-datasource-stat:
+      #        async-init:
+      #        clear-filters-enable:
+      #        reset-stat-enable:
+      #        not-full-timeout-retry-count:
+      #        max-wait-thread-count:
+      #        fail-fast:
+      #        phyTimeout-millis:
+      #        keep-alive:
+      #        pool-prepared-statements:
+      #        init-variants:
+      #        init-global-variants:
+      #        use-unfair-lock:
+      #        kill-when-socket-read-timeout:
+      #        connection-properties:
+      #        max-pool-prepared-statement-per-connection-size:
+      #        init-connection-sqls:
+      #        share-prepared-statements:
+      #        connection-errorretry-attempts:
+      #        break-after-acquire-failure:
+      #        filters: stat,wall # \u6CE8\u610F\u8FD9\u4E2A\u503C\u548Cdruid\u539F\u751F\u4E0D\u4E00\u81F4\uFF0C\u9ED8\u8BA4\u542F\u52A8\u4E86stat,wall
+      #        wall:
+      #          multi-statement-allow: true
+
+      # \u591A\u6570\u636E\u6E90\u914D\u7F6E
+      primary: teacher
+      datasource:
+        teacher:
+          username: root
+          password: 123456
+          url: jdbc:mysql://localhost:3306/teacher_db?serverTimezone=Asia/Shanghai
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          #schema: db/schema.sql
+          druid: #\u8FD9\u91CC\u53EF\u4EE5\u91CD\u5199\u9ED8\u8BA4\u503C
+            initial-size: 5
+        student:
+          username: root
+          password: 123456
+          url: jdbc:mysql://localhost:3306/student_db?serverTimezone=Asia/Shanghai
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          druid:
+            initial-size: 6
+
+
+logging:
+  level:
+    com.baomidou: debug
+    org.springframework.jdbc.datasource.init: debug
